@@ -1,3 +1,7 @@
+//DATOS BASE
+
+//menu y platosCrudos
+
 const menu = [
     {
         id: 1,
@@ -38,8 +42,18 @@ const menu = [
 
 
 const pedidosCrudos = [
-    ["cliente1", 1]
-]
+    ["Cliente 1", 1, 3],
+    [null, 2, 5],
+    ["Cliente 3", 5, 5, 5],
+    [undefined, 1],
+    ["Cliente 4", 4, 2],
+    [null, 3, 1, 5],
+    ["Cliente 6", 2, 2, 2],
+    [undefined, 4, 5],
+    ["Cliente 8", 3],
+    [null, 1, 4]
+];
+
 
 function procesarPedido(pedido){
     const pedidoFinal= []
