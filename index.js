@@ -3,7 +3,7 @@ const menu = [
         id: 1,
         nombre: "Fideos a la Boloñesa",
         categoria: "Pasta",
-        precio: 12400, // precio en número para facilitar cálculos
+        precio: 12400, 
         descripcion: "Pasta fresca con salsa de tomate y carne molida"
     },
     {
