@@ -2,11 +2,11 @@
 //menu y platosCrudos
 
 const menu = [
-    { id: 1, nombre: "Fideos a la Boloñesa", categoria: "Pasta", precio: 12400, descripcion: "Pasta fresca con salsa de tomate y carne molida" },
-    { id: 2, nombre: "Pizza Margarita", categoria: "Pizza", precio: 15900, descripcion: "Masa artesanal con salsa de tomate, mozzarella y albahaca" },
-    { id: 3, nombre: "Ensalada César", categoria: "Ensaladas", precio: 9800, descripcion: "Lechuga romana, pollo a la plancha, crutones y aderezo César" },
-    { id: 4, nombre: "Lasaña de Pollo", categoria: "Pasta", precio: 14200, descripcion: "Capas de pasta, pollo desmechado y salsa bechamel" },
-    { id: 5, nombre: "Sopa de Verduras", categoria: "Sopas", precio: 7500, descripcion: "Caldo casero con variedad de vegetales frescos" }
+    { id: 1, nombre: "Fideos a la Boloñesa", categoria: "Pasta", precio: 24000, descripcion: "Pasta fresca con salsa de tomate y carne molida" },
+    { id: 2, nombre: "Pizza Margarita", categoria: "Pizza", precio: 25000, descripcion: "Masa artesanal con salsa de tomate, mozzarella y albahaca" },
+    { id: 3, nombre: "Ensalada César", categoria: "Ensaladas", precio: 20000, descripcion: "Lechuga romana, pollo a la plancha, crutones y aderezo César" },
+    { id: 4, nombre: "Lasaña de Pollo", categoria: "Pasta", precio: 25500, descripcion: "Capas de pasta, pollo desmechado y salsa bechamel" },
+    { id: 5, nombre: "Sopa de Verduras", categoria: "Sopas", precio: 12500, descripcion: "Caldo casero con variedad de vegetales frescos" }
 ];
 
 const pedidosCrudos = [
@@ -24,25 +24,40 @@ const pedidosCrudos = [
 
 
 function procesarPedido(pedido){
-    const pedidoFinal= []
-    let bedida = "";
-    let cliente = pedido[0] 
-    pedidoFinal.unshift(bebida);
 
-    if(cliente === null || cliente === undefined ){
-        cliente = "Cliente Anonimo"
-    }
+    let pedidoModificado= pedido.slice() //Hacemos una copia del array
+    let bebida = true;
+    let nombreCliente = pedidoModificado.shift(); //extraemos nombre del cliente
     
-    pedidoFinal.push(cliente)
+    if(nombreCliente === null || nombreCliente === undefined ){
+        nombreCliente = "Cliente Anónimo"
+    }
+    pedidoModificado.push(nombreCliente) //Colocamos nombre del cliente al final
+    pedidoModificado.unshift(bebida); //agregamos bebida al comienzo del array
 
-    return pedidoProcesado
+    return pedidoModificado
 }
+
 
 function calcularIva(){
-
-
 }
 
+//Cálculos y reportes
+//a) Total cada pedido
 
 
-console.log(menu)
+
+//Proceso cada pedidoCrudo
+pedidosCrudos.forEach(pedidoSinProcesar => {
+    let pedidoProcesado = procesarPedido(pedidoSinProcesar)
+
+    let idsPlatosPedido = pedidoProcesado.slice(1,-1) //quito el comienzo y final del pedido procesado
+    console.log(idsPlatosPedido)
+ // Aquí encontrar los ids de los platos en el array menu, sumar los precios 
+
+
+    //lista de pedidos formateada.
+    console.log(pedidoProcesado)
+
+});
+
