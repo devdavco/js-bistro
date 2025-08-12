@@ -15,39 +15,53 @@ const pedidosCrudos = [
     ["Cliente 3", 104, 104, 104],
     [undefined, 101],
     ["Cliente 5", 104, 102],
-    [null, 103, 101, 104],
+    [null, 103, 104],
     ["Cliente 7", 102, 102, 102],
     [undefined, 104, 104],
     ["Cliente 9", 103],
     [null, 101, 104]
 ];
+
 //
 function procesarPedido(pedido){
-    let pedidoProcesado = pedido.slice() //Hacemos una copia del array
-    let nombreCliente = pedidoProcesado.shift(); //extraemos nombre del cliente
+
+    let nombreCliente = pedido.shift(); //extraemos nombre del cliente
 
     if(nombreCliente === null || nombreCliente === undefined || nombreCliente === "" ){
         nombreCliente = "Cliente Anónimo"
     }
-    pedidoProcesado.push(nombreCliente) //Colocamos nombre del cliente al final
+    pedido.push(nombreCliente) //Colocamos nombre del cliente al final
     let bebida = "bebida";
-    pedidoProcesado.unshift(bebida); //agregamos bebida al comienzo del array
+    pedido.unshift(bebida); //agregamos bebida al comienzo del array
     
-    // console.log("Pedidos Procesados: \n",pedidoProcesado)
-    return pedidoProcesado
+    return pedido
 }
 
-
-function calcularIva(){
-
+//Calcular IVA
+function calcularIva(valorTotalpedido){
+    const IVA = 1.19
+    let valorIva = valorTotalpedido/IVA;
+    return valorIva
 }
+
+// function facturaFinal(){
+
+//     //Valor pedido x cliente
+//     // Nombre de cliente
+//     //Valor Iva
+//     //
+// }
+
 
 //Cálculos y reportes
 //a) Total cada pedido
 
 //Proceso cada pedidoCrudo
 
-const pedidosProcesados = []    ;
+const pedidosProcesados = []
+let totalVentas = 0;
+
+
 pedidosCrudos.forEach(pedidoSinProcesar => {
 
     let pedidoProcesado = procesarPedido(pedidoSinProcesar)
@@ -58,21 +72,25 @@ pedidosCrudos.forEach(pedidoSinProcesar => {
     idsPlatosPedido.forEach(idplato => {
         totalPedido = totalPedido + menu.find(plato=> plato.id === idplato)?.precio 
     });
+    totalVentas = totalVentas + totalPedido;
 
-    console.log("Total Pedido: ",totalPedido,pedidoProcesado[pedidoProcesado.length-1] )
+    // console.log("Pedido: $",totalPedido,pedidoProcesado[pedidoProcesado.length-1] )
 
     //Postre Gratis
     const MONTO_MIN_POSTRE_GRATIS = 40000;
 
-    const postreGratis = totalPedido>=MONTO_MIN_POSTRE_GRATIS && idsPlatosPedido.length>=1 ? 'Postre Gratis': 'Sin Postre Gratis';
+    const postreGratis = totalPedido>=MONTO_MIN_POSTRE_GRATIS && idsPlatosPedido.length>=1 ? 'Postre Gratis': '';
     
-    console.log(postreGratis);
+    pedidoProcesado.push(postreGratis)
+    pedidoProcesado.push(totalPedido)
 
     pedidosProcesados.push(pedidoProcesado)
+    
     //lista de pedidos formateada.
     // console.log(pedidoProcesado)
 
 });
 
 console.log(pedidosProcesados)
+console.log("Total: $",totalVentas)
 
