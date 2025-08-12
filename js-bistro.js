@@ -21,7 +21,7 @@ const pedidosCrudos = [
     ["Cliente 9", 103],
     [null, 101, 104]
 ];
-
+//
 function procesarPedido(pedido){
     let pedidoProcesado = pedido.slice() //Hacemos una copia del array
     let nombreCliente = pedidoProcesado.shift(); //extraemos nombre del cliente
@@ -62,11 +62,11 @@ pedidosCrudos.forEach(pedidoSinProcesar => {
     console.log("Total Pedido: ",totalPedido,pedidoProcesado[pedidoProcesado.length-1] )
 
     //Postre Gratis
-    if(totalPedido>=40000 && idsPlatosPedido.length >=1){
-        console.log("Postre Gratis " )
+    const MONTO_MIN_POSTRE_GRATIS = 40000;
 
-    }
-
+    const postreGratis = totalPedido>=MONTO_MIN_POSTRE_GRATIS && idsPlatosPedido.length>=1 ? 'Postre Gratis': 'Sin Postre Gratis';
+    
+    console.log(postreGratis);
 
     pedidosProcesados.push(pedidoProcesado)
     //lista de pedidos formateada.
