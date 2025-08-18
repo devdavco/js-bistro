@@ -139,3 +139,7 @@ MIT
 ### Agradecimientos
 
 Proyecto académico para consolidar fundamentos de **JavaScript Básico**.
+
+
+<img width="409" height="567" alt="image" src="https://github.com/user-attachments/assets/d67455fa-56f0-4d29-bc6f-a83cc9ee2f0f" />
+
